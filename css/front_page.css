@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Work+Sans:400,600");
+html {
+	scroll-behavior: smooth;
+}
 body {
 	margin: 0;
 	background: #222;
@@ -9,33 +12,35 @@ body {
 
 /*The navigation bar*/
 
-.container {
-	width: 92%;				/*how big is the space between the left/right edge of margin with the leftmost/rightmost item*/
-	margin: 0 auto;
-}
-
 header {
 	background: #55d6aa;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;				
+	height: 58px;
+	border-bottom: 1px solid black
 }
 
-header::after {
+header::after {				
 	content: '';
-	display: table;
+	display: table;			
 	clear: both;
 }
 
-.logo {					/*properties of the title "Ray Adrian Nugroho"*/
+.header_container {
+	width: 92%;				
+	margin: 0 auto;
+}
+
+.header_logo {
 	float: left;
 	color: #444;
 	padding: 0px;
 	margin: 10px 0;
 }
 
-nav {
+nav {						
 	float: right;
 
 }
@@ -43,34 +48,36 @@ nav {
 nav ul {
 	margin: 0;
 	padding: 0;
-	list-style: none;
+	list-style: none;		
 }
 
-nav li {				/*make the list "me", "projects", "interests", "contact" horizontal*/
-	display: inline-block;
+nav li {				
+	display: inline-block;	
 	margin-left: 70px;
 	padding-top: 23px;
-	position: relative;
+	position: relative;		
 }
 
-nav a {					/*text properties of "me", "projects", "interests", "contact"*/
-  color: #444;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
+nav a {					
+  	color: #444;
+  	text-decoration: none;
+  	text-transform: uppercase;
+  	font-size: 14px;
+  	height: 500px;
+  	width: 500px;
 }
 
-nav a:hover {			/*when your mouse hover over the text*/
+nav a:hover {				
 	color: #000;
 }
 
-nav a::before {			/*the appearing effect of the bar above the text*/
+nav a::before {			
 	content: '';
 	display: block;
 	height: 5px;
 	background-color: #444;
 
-	position: absolute;
+	position: absolute;		
 	top: 0;
 	width: 0%;
 
@@ -81,8 +88,70 @@ nav a:hover::before {
 	width: 100%;
 }
 
+nav img {
+	display: none;
+	height: 50px;
+	margin-top: 3px;
+	margin-right: 10px;
+}
 
-/*The profile*/
+@media(max-width: 960px) {
+	nav ul {display: none;}
+	nav img {display: inline-block;}
+	div #dropdown_menu {display: inline-block;}
+}
+
+
+/*The dropdown menu*/
+
+#dropdown_menu {
+	position: fixed;
+	transition: 0.5s;
+	display: none;
+	z-index: 1;
+}
+
+.options {
+	list-style-type: none;				
+	padding: 0;
+	background: #55d6aa; 
+	margin: 0;
+}
+
+.options > li {
+	line-height: 80px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+.options > li > a {
+	display: inline-block;
+	width: 150px;
+	height: 80px;
+
+	color: #444;
+  	text-decoration: none;
+  	text-transform: uppercase;
+  	font-size: 14px;
+}
+
+.options > li > a:hover {
+	background-color: #008744;
+	transition: .5s ease;
+}
+
+
+/*The anchor*/
+
+a.anchor {
+	display: block;
+	position: relative;
+	top: -70px;				
+	visibility: hidden;
+}
+
+
+/*My profile section*/
 
 .me_container {
 	margin: 40px 20px;
@@ -90,45 +159,44 @@ nav a:hover::before {
 	border: 1px solid green;
 }
 
-.me_text {
-	width: 64%;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.profile_pic {
+.me_profilePic {
 	width: 35%;
 	display: inline-block;
 }
 
-.me_text div {
+.me_profilePic > img{
+	width: 80%;
+}
+
+.me_textDescription {
+	width: 64%;
+	display: inline-block;
+	vertical-align: top;
+
 	color: #F0FFFF;
 	font-size: 19px;
 }
 
-.profile_pic > img{
-	width: 80%;
-}
 
+/*The "projects" section*/
 
-/*The project section*/
-
-.project_row {
+.project_container {
 	text-align: justify;
 	border: 1px solid green;
-	overflow: hidden;			/*so that the div will fit its contents*/
+	overflow: hidden;			
 	padding: 0px 25px 0px;
 	margin: 40px 20px;
 }
 
-.project_row:after {
+.project_container::after {
 	content: '';
 	display: inline-block;
 	width: 100%;
 }
 
-.project_col {
-	display: inline-block;
+.project_container h1 {
+	color: #F0FFFF;
+	margin-bottom: 30px;
 }
 
 .project_box {
@@ -136,15 +204,10 @@ nav a:hover::before {
 	width: 410px;
 	height: 410px;
 	margin: 0 auto;
-	line-height: 410px;		/*we need this so that text-align can work vertically*/
+	line-height: 410px;		
 	text-align: center;
-	color: #F0FFFF;
-	position: relative;		/*Required to put the text in the middle of the box/picture*/
-}
-
-.project_row h1 {
-	color: #F0FFFF;
-	margin-bottom: 30px;
+	position: relative;		
+	display: inline-block;
 }
 
 .project_box img {
@@ -152,7 +215,7 @@ nav a:hover::before {
 	height: 100%;
 }
 
-.overlay {
+.project_overlay {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -163,18 +226,10 @@ nav a:hover::before {
 	opacity: 0;
 	transition: .5s ease;
 	background-color: transparent;
+	color: #F0FFFF;
 }
 
-.project_box:hover .overlay {
-	opacity: 1;
-}
-
-.project_box:hover img {
-	opacity: 0.3;
-	transition: .5s ease;
-}
-
-.text {
+.project_name {
 	font-size: 20px;
 	position: absolute;
 	top: 50%;
@@ -184,14 +239,24 @@ nav a:hover::before {
 	transform: translate(-50%, -50%);
 	text-align: center;
 	text-shadow: 0px 0px 6px #000000
+	color: #F0FFFF;
+}
+
+.project_box:hover .project_overlay {
+	opacity: 1;
+}
+
+.project_box:hover img {
+	opacity: 0.3;
+	transition: .5s ease;
 }
 
 
-/* The interests section */
+/* The "interests" section */
 
 .interests_container {
 	border: 1px solid green;
-	overflow: hidden;			/*caused the div to fit its contents*/
+	overflow: hidden;
 	padding: 0px 25px 25px;
 	margin: 40px 20px;
 }
@@ -201,18 +266,17 @@ nav a:hover::before {
 	margin-bottom: 30px;
 }
 
-* {box-sizing: border-box;}
+* {box-sizing: border-box;}			
 
-.tab {					/*Style the tab*/
+.interests_tab {					
 	float: left;
 	border: 1px solid #ccc;
-	/*background-color: #f1f1f1;*/
 	width: 20%;
 	height: 300px;
 	min-width: 150px;
 }
 
-.tab button {			/*Style the buttons to open the tab content*/
+.interests_tablinks {				
 	display: block;
 	background-color: inherit;
 	color: white;
@@ -229,17 +293,17 @@ nav a:hover::before {
 	font-weight: bold;
 }
 
-.tab button:hover {		/*Change the background color of buttons on hover */
+.interests_tablinks:hover {			
 	background-color: #606060;
 	color: white;
 }
 
-.tab button.active {	/*Create an active/current "tab button" class */
+.interests_tablinks.active {		
 	background-color: #ccc;
 	color: black;
 }
 
-.tabcontent {
+.interests_tabContent {
 	float: left;
 	border: 1px solid #ccc;
 	width: 80%;
@@ -248,22 +312,22 @@ nav a:hover::before {
 	font-size: 20px;
 }
 
-#video_games {
+#interests_videoGames {
 	background-image: url(../images/0b9c92fdce72235a65f6e1bc3f2d09b7.jpg); 
 	background-size: 100% 100%;
 }
 
-#food_gourmet {
+#interests_foodGourmet {
 	background-image: url(../images/image-Herbs-and-spices-on-dark-background-stocky-ai-27147570.jpg);
 	background-size: 100% 100%;
 }
 
-#programming {
+#interests_programming {
 	background-image: url(../images/maxresdefault.jpg);
 	background-size: 100% 100%;
 }
 
-.content {
+.interests_content {
 	margin: 0 7%;
 	width: 85%;
 	height: 100%;
@@ -272,69 +336,50 @@ nav a:hover::before {
 	overflow-y: scroll;
 }
 
-.content h2 {
+.interests_content h2 {
 	margin-top: 0;
 	font-size: 35px;
 }
 
-.content iframe {
+.interests_content iframe {
 	display: block;
 	margin: 0 auto;
 }
 
-.myfood_column {
-	float: left;
-	width: 33.33%;
-	padding: 5px;
-}
-
-.myfood_row::after {
+.interests_contentRows::after {
 	content: "";
 	clear: both;
 	display: table;
 }
 
-.myfood_column img {
-	width: 100%
+.interests_img {
+	width: 100%;
 }
 
-.myfood_column p {
+.interests_foodPic {
+	float: left;
+	width: 33.33%;
+	padding: 5px;
+}
+
+.interests_foodPic p {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-.portrait_ow {		/*duplicate! PLEASE FIX*/
-	float: left;
-	width: 15%;
-	padding: 5px;
-}
-
-.portrait_ow img {
-	width: 100%;
-}
-
-.program_pic_column {
+.interests_programPic {
 	float: left;
 	width: 24%;
 	margin-right: 10px;
 	border: solid 1px white;
 }
 
-.program_content_column {
+.interests_programDesc {
 	float: left;
 	width: 73%;
 	margin-left: 10px;
 }
 
-.program_row::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.program_pic_column img {
-	width: 100%;
-}
 
 /* The "contact" section */
 
@@ -355,18 +400,22 @@ nav a:hover::before {
 	font-size: 19px;
 }
 
-.download_doc {
-	float: left;
-	border: 1px solid black;
-	font-size: 19px;
-	color: black;
-	background-color: #DCDCDC;
-	margin-left: 50px;
-	padding: 10px;
-	cursor: pointer;
+.contact_box {
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	line-height: 0px;		
+	text-align: center;
+	display: inline-block;
 }
 
-.download_doc:hover {
-	background-color: #A9A9A9;
-	transition: 0.5s ease;
+.contact_box img {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+}
+
+.contact_box:hover img {
+	opacity: 0.3;
+	transition: .5s ease;
 }
