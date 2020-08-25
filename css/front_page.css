@@ -19,7 +19,7 @@ header {
 	width: 100%;
 	z-index: 2;				
 	height: 58px;
-	border-bottom: 1px solid black
+	border-bottom: 1px solid black;
 }
 
 header::after {				
@@ -230,7 +230,7 @@ a.anchor {
 }
 
 .project_name {
-	font-size: 20px;
+	font-size: 26px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
